@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../MultiRansac.cpp \
 ../Ransac.cpp \
 ../test.cpp 
 
 OBJS += \
+./MultiRansac.o \
 ./Ransac.o \
 ./test.o 
 
 CPP_DEPS += \
+./MultiRansac.d \
 ./Ransac.d \
 ./test.d 
 

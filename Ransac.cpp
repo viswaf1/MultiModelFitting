@@ -7,7 +7,6 @@
 
 
 #include "Ransac.h"
-#include "vec2.h"
 
 namespace std {
 
@@ -30,7 +29,7 @@ vec2f Ransac::getModel() {
 	vector<float> Thetas;
 	vector<float> Rhos;
 
-	vector<int> ptsUsed;
+	//vector<int> ptsUsed;
 	vector<vector<int> > ptsUsedIter;
 
 	int maxInlierNum = 0;
@@ -67,19 +66,31 @@ vec2f Ransac::getModel() {
 	}
 
 	for(unsigned int i=0; i<Thetas.size(); i++) {
-		cout << "(" << Thetas[i] << " " << Rhos[i] << ") " << ptsUsedIter[i].size() << "  \n";
+		//cout << "(" << Thetas[i] << " " << Rhos[i] << ") " << ptsUsedIter[i].size() << "  \n";
 		if(ptsUsedIter[i].size() > maxInlierNum) {
 			maxInlierNum = ptsUsedIter[i].size();
 			maxInlierInd = i;
 		}
 	}
-	cout << "\n";
+	//cout << "\n";
+	//cout << "size of ptsUsed is " << ptsUsedIter.size() << " maxInd is " << maxInlierInd << "\n";
+	if(ptsUsedIter.size() < 1) {
+		model.x = 0;
+		model.y = 0;
+		ptsUsed.clear();
+		return model;
+	}
 	ptsUsed = ptsUsedIter[maxInlierInd];
 	model.x = Thetas[maxInlierInd];
 	model.y = Rhos[maxInlierInd];
 
 	return model;
 }
+
+vector<int> Ransac::getUsedPts() {
+	return ptsUsed;
+}
+
 
 vector<int> Ransac::getSampleSet(int start, int maxIndex, int len, int shift) {
 

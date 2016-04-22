@@ -24,6 +24,7 @@ class Ransac {
 	int thInlrNum;
 	int startPt;
 	float thDist;
+	vector<int> ptsUsed;
 
 	vector<int> getSampleSet(int start, int maxIndex, int len, int shift);
 	vector<int> getInliers(vector<int> ptSample, vector<vec2f> &pts);
@@ -33,6 +34,7 @@ public:
 	Ransac(vector<vec2f> pts, int iterNum, float thDist, float inlrRatio, int start=0);
 	virtual ~Ransac();
 	vec2f getModel();
+	vector<int> getUsedPts();
 };
 
 } /* namespace std */
