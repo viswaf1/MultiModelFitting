@@ -9,6 +9,7 @@
 #include <vector>
 #include "vec2.h"
 #include "MultiRansac.h"
+#include "ModelFitter.h"
 
 using namespace std;
 int main() {
@@ -29,15 +30,23 @@ int main() {
 	vec2f model = ransac.getModel();
 	cout << "the model is " << model.x << " " << model.y << "\n";*/
 
-	MultiRansac mulRansac(points, 100, 0.25, 0.1);
+	MultiRansac mulRansac(points, 100, 0.3, 0.1);
 	vector<vec2f> multiModels = mulRansac.getMultiModels();
-	cout << "[";
+	/*cout << "[";
 	for(int i=0; i<multiModels.size(); i++){
 		vec2f model = multiModels[i];
 		//cout << "the model is " << model.x << " " << model.y << "\n";
 		cout << model.x << ", " << model.y << ";";
 	}
-	cout << "]";
+	cout << "]";*/
+
+	ModelFitter mfit(points, multiModels);
+	points = mfit.fitModels();
+
+	for(int n=0; n<N; n++) {
+		cout << points[n].x << "," << points[n].y << "\n";
+	}
+
 	return 0;
 }
 

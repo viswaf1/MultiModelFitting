@@ -4,16 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../ModelFitter.cpp \
 ../MultiRansac.cpp \
 ../Ransac.cpp \
 ../test.cpp 
 
 OBJS += \
+./ModelFitter.o \
 ./MultiRansac.o \
 ./Ransac.o \
 ./test.o 
 
 CPP_DEPS += \
+./ModelFitter.d \
 ./MultiRansac.d \
 ./Ransac.d \
 ./test.d 

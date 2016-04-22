@@ -34,7 +34,7 @@ vector<vec2f> MultiRansac::getMultiModels() {
 		vector<DataPoint> currentData = dataPts;
 		int startInd = rand() % (currentData.size() );
 		vector<CSElement> newCS;
-		for(int j=0; j<200; j++) {
+		for(int j=0; j<1000; j++) {
 
 			if(currentData.size() < 2) {
 				break;
@@ -136,7 +136,7 @@ bool MultiRansac::checkDisjointElements(CSElement &E1, CSElement &E2) {
 	set_intersection(E1.inliers.begin(), E1.inliers.end(), E2.inliers.begin(),
 			E2.inliers.end(), back_inserter(interInliers));
 
-	if(interInliers.size() > 5) {
+	if(interInliers.size() > 10) {
 		return false;
 	}
 	else {
